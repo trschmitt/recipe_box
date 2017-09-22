@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1>Questions</h1>
+<%= link_to 'New Recipe', new_recipe_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.title %></td>
+        <td><%= recipe.body %></td>
+        <td><%= link_to 'Show', recipe %></td>
+        <td><%= link_to 'Delete', recipe, method: :delete, data: { confirm: "Are you sure?"} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Name:</strong>
-  <%= @recipe.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @recipe.description %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', root_path %>
+<%= paginate @recipes %>
+<%= page_entries_info @recipes %>
