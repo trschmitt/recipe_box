@@ -1,4 +1,4 @@
-<h1>Questions</h1>
+<h1>Recipe Box - Recipes</h1>
 <%= link_to 'New Recipe', new_recipe_path %>
 <table>
   <thead>
@@ -11,7 +11,7 @@
     <% @recipes.each do |recipe| %>
       <tr>
         <td><%= recipe.title %></td>
-        <td><%= recipe.body %></td>
+        <td><%= recipe.description %></td>
         <td><%= link_to 'Show', recipe %></td>
         <td><%= link_to 'Delete', recipe, method: :delete, data: { confirm: "Are you sure?"} %></td>
       </tr>

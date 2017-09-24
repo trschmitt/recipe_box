@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  groot to: 'recipes#index'
+  root to: 'recipes#index'
 
   resources :recipes
 
