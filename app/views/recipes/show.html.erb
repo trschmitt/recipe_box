@@ -6,8 +6,15 @@
   </p>
 
   <h4>Ingredients</h4>
+  <%= link_to 'Add Ingredient', new_recipe_ingredient_path %>
+  <ul>
+    <% @recipe.ingredients.each do |ingredient| %>
+    <li> ingredient.count ingredient.name</li>
+    <% end %>
+  </ul>
 
   <h4>Steps</h4>
+  <%= link_to 'Add Step', new_recipe_step_path %>
 
   <%= link_to 'Recipes', recipes_path %>
   <%= link_to 'Delete', @recipe, method: :delete, data: { confirm: "Are you sure?"} %>
