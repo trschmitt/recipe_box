@@ -8,7 +8,7 @@ class StepsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @step = @recipe.steps.create(step_params)
+    @step = @recipe.steps.build(step_params)
 
     respond_to do |format|
       if @step.save(step_params)

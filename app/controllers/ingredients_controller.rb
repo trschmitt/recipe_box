@@ -8,7 +8,7 @@ class IngredientsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @ingredient = @recipe.ingredients.create(ingredient_params)
+    @ingredient = @recipe.ingredients.build(ingredient_params)
 
     respond_to do |format|
       if @ingredient.save(ingredient_params)
