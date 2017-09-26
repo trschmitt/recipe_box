@@ -1,0 +1,22 @@
+<%= form_with(model: [recipe, step], local: true, class: 'step-form') do |form| %>
+  <% if recipe.step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% recipe.step.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :recipe_step_description%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
