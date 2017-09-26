@@ -5,19 +5,19 @@
     <%= @recipe.description %>
   </p>
 
-  <h4>Ingredients</h4>
-  <%= link_to 'Add Ingredient', new_recipe_ingredient_path %>
+  <h3>Ingredients</h3>
+  <%= link_to 'Add Ingredient', new_recipe_ingredient_path(@recipe) %>
   <ul>
     <% @recipe.ingredients.each do |ingredient| %>
-    <li> ingredient.count ingredient.name <%= link_to 'Delete', recipe_ingredient_path, method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_ingredient_path %></li>
+    <li>  <%= ingredient.count %> <%= ingredient.name %> <%= link_to 'Delete', recipe_ingredient_path(@recipe, ingredient), method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_ingredient_path(@recipe, ingredient) %></li>
     <% end %>
   </ul>
 
-  <h4>Steps</h4>
-  <%= link_to 'Add Step', new_recipe_step_path %>
+  <h3>Steps</h3>
+  <%= link_to 'Add Step', new_recipe_step_path(@recipe) %>
   <ol>
     <% @recipe.steps.each do |step| %>
-    <li> step.description <%= link_to 'Delete', recipe_step_path, method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_step_path %></li>
+    <li> <%= step.description %> <%= link_to 'Delete', recipe_step_path(@recipe, step), method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_step_path(@recipe, step) %></li>
     <% end %>
   </ol>
 

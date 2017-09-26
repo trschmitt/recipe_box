@@ -1,10 +1,10 @@
 <%= form_with(model: [recipe, ingredient ], local: true, class: 'ingredient-form') do |form| %>
-  <% if recipe.ingredient.errors.any? %>
+  <% if ingredient.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(recipe.ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+      <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
 
       <ul>
-      <% recipe.ingredient.errors.full_messages.each do |message| %>
+      <% ingredient.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -13,14 +13,14 @@
 
   <div class="field">
     <%= form.label :count %>
-    <%= form.number_field(:count, in: 1.0..20.0, step: 0.5), id: :recipe_ingredient_count %>
+    <%= form.number_field(:count, in: 1.0..20.0, step: 0.5) %>
   </div>
 
   <!--  measurment field -->
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :recipe_ingredient_name%>
+    <%= form.text_field :name %>
   </div>
 
   <div class="actions">
