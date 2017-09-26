@@ -1,2 +1,6 @@
-<h1>Steps#edit</h1>
-<p>Find me in app/views/steps/edit.html.erb</p>
+<h1>Editing Step</h1>
+
+<%= render 'form', recipe: @recipe, step: @step %>
+
+<%= link_to 'Show', @recipe %> |
+<%= link_to 'Back', recipes_path(@recipe) %>

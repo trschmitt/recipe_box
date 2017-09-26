@@ -1,4 +1,4 @@
-<%= form_with(model: [recipe, ingredient ], local: true, class: 'ingredient-form') do |form| %>
+<%= form_with( model: [recipe, ingredient], local: true, class: 'ingredient-form' ) do |form| %>
   <% if ingredient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>

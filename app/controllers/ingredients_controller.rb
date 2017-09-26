@@ -8,11 +8,11 @@ class IngredientsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe.ingredients.create(ingredient_params)
+    @ingredient = @recipe.ingredients.create(ingredient_params)
 
     respond_to do |format|
-      if @recipe.ingredients.save(ingredient_params)
-        format.html { redirect_to recipe_url(@recipe) }
+      if @ingredient.save(ingredient_params)
+        format.html { redirect_to recipe_path(@recipe) }
         format.json { render :show, status: :created, title: @ingredient }
       else
         format.html { render :new }
@@ -22,9 +22,12 @@ class IngredientsController < ApplicationController
   end
 
   def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredient = @recipe.ingredients.find(params[:id])
+
     respond_to do |format|
-      if @recipe.ingredients.update(ingredient_params)
-        format.html { redirect_to recipe_url(@recipe), notice: 'Ingredient was successfully updated.' }
+      if @ingredient.update(ingredient_params)
+        format.html { redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully updated.' }
         format.json { render :show, status: :ok, title: @ingredient }
       else
         format.html { render :edit }
@@ -34,11 +37,20 @@ class IngredientsController < ApplicationController
   end
 
   def destroy
-    @recipe.ingredients.destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredient = @recipe.ingredients.find(params[:id])
+
+    @ingredient.destroy
+
     respond_to do |format|
-      format.html { redirect_to recipe_url(@recipe), notice: 'Ingredient was successfully destroyed.' }
+      format.html { redirect_to recipe_path(@recipe), notice: 'Ingredient was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @ingredient = @recipe.ingredients.find(params[:id])
   end
 
   private

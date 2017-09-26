@@ -17,7 +17,7 @@
   <%= link_to 'Add Step', new_recipe_step_path(@recipe) %>
   <ol>
     <% @recipe.steps.each do |step| %>
-    <li> <%= step.description %> <%= link_to 'Delete', recipe_step_path(@recipe, step), method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_step_path(@recipe, step) %></li>
+    <li> <%= step.description %> <%= link_to 'Delete', recipe_step_path(@recipe, step), method: :delete, data: { confirm: "Are you sure?"} %> <%= link_to 'Edit', edit_recipe_step_path(@recipe, step) %> </li>
     <% end %>
   </ol>
 

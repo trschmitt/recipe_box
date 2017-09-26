@@ -8,11 +8,11 @@ class StepsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe.steps.create(step_params)
+    @step = @recipe.steps.create(step_params)
 
     respond_to do |format|
-      if @step.save
-        format.html { redirect_to recipe_url(@recipe) }
+      if @step.save(step_params)
+        format.html { redirect_to recipe_path(@recipe) }
         format.json { render :show, status: :created, title: @step }
       else
         format.html { render :new }
@@ -22,8 +22,11 @@ class StepsController < ApplicationController
   end
 
   def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = @recipe.steps.find(params[:id])
+
     respond_to do |format|
-      if @recipe.step.update(step_params)
+      if @step.update(step_params)
         format.html { redirect_to @recipe, notice: 'Step was successfully updated.' }
         format.json { render :show, status: :ok, title: @step }
       else
@@ -34,11 +37,19 @@ class StepsController < ApplicationController
   end
 
   def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = @recipe.steps.find(params[:id])
+
     @step.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Step was successfully destroyed.' }
+      format.html { redirect_to recipe_path(@recipe), notice: 'Step was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = @recipe.steps.find(params[:id])
   end
 
   private
@@ -48,6 +59,6 @@ class StepsController < ApplicationController
   end
 
   def step_params
-    params.require(:step).permit(:count, :name)
+    params.require(:step).permit(:description)
   end
 end
