@@ -10,4 +10,5 @@
   <h4>Steps</h4>
 
   <%= link_to 'Recipes', recipes_path %>
+  <%= link_to 'Delete', @recipe, method: :delete, data: { confirm: "Are you sure?"} %>
 </body>
